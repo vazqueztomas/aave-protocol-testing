@@ -1,4 +1,5 @@
 const PoolV3Artifact = require("../node_modules/@aave/core-v3/artifacts/contracts/protocol/pool/Pool.sol/Pool.json");
+const pruebaDataProvider = require("/Users/tomasvazquez/Develops/react-ratherlabs/api/node_modules/@aave/core-v3/artifacts/contracts/interfaces/IPoolAddressesProvider.sol/IPoolAddressesProvider.json");
 
 const Web3 = require("web3");
 const web3 = new Web3("https://cloudflare-eth.com");
@@ -15,8 +16,14 @@ const getReserves = async () => {
     console.log(res);
   });
 };
+
+const aaveDataProviderContract = new web3.eth.Contract(
+  pruebaDataProvider.abi,
+  "0x69FA688f1Dc47d4B5d8029D5a35FB7a548310654"
+);
+console.log(aaveDataProviderContract.methods);
 // getReserves();
-console.log(pools.methods);
+// console.log(pools);
 const getReserveDataToken = async () => {
   await pools.methods.getReserveData(myAddress).call(function (error, result) {
     if (error) return;
